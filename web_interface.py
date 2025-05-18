@@ -8,6 +8,11 @@ import os
 from flask import Flask, render_template, request, flash, jsonify
 from simpledoc.compiler import Compiler
 from simpledoc.exceptions import SimpleDocError
+from simpledoc.lexer import Lexer
+from simpledoc.parser import Parser
+from simpledoc.validator import Validator
+from simpledoc.html_generator import HTMLGenerator
+from simpledoc.ast_generator import ASTGenerator
 
 # Crear la aplicación Flask
 app = Flask(__name__)
@@ -34,26 +39,114 @@ def compilar():
     # Obtener datos del formulario
     codigo = request.form.get('codigo', '')
     nivel_complejidad = int(request.form.get('nivel_complejidad', 3))
+    modo_detallado = request.form.get('modo_detallado', 'false') == 'true'
     
     try:
-        # Crear compilador con el nivel de complejidad especificado
-        compiler = Compiler(nivel_complejidad=nivel_complejidad)
-        
-        # Compilar código
-        html_generado = compiler.compilar(codigo)
-        
-        return jsonify({
-            'success': True,
-            'html': html_generado,
-            'mensaje': 'Compilación exitosa'
-        })
+        if not modo_detallado:
+            # Modo normal: usar el compilador directamente
+            compiler = Compiler(nivel_complejidad=nivel_complejidad)
+            html_generado = compiler.compilar(codigo)
+            
+            return jsonify({
+                'success': True,
+                'html': html_generado,
+                'mensaje': 'Compilación exitosa',
+                'detalles': None
+            })
+        else:
+            # Modo detallado: mostrar cada etapa del proceso
+            detalles = procesar_detallado(codigo, nivel_complejidad)
+            
+            return jsonify({
+                'success': True,
+                'html': detalles['html'],
+                'mensaje': 'Compilación exitosa con detalles',
+                'detalles': detalles
+            })
         
     except SimpleDocError as e:
         return jsonify({
             'success': False,
             'error': str(e),
-            'mensaje': 'Error de compilación'
+            'mensaje': 'Error de compilación',
+            'detalles': None
         })
+
+
+def procesar_detallado(codigo, nivel_complejidad):
+    """
+    Procesa el código SimpleDoc mostrando cada etapa del proceso de compilación
+    
+    Args:
+        codigo: Texto SimpleDoc a compilar
+        nivel_complejidad: Nivel de complejidad (1-3)
+        
+    Returns:
+        Diccionario con detalles de cada etapa
+    """
+    # 1. Análisis léxico (tokenización)
+    lexer = Lexer(nivel_complejidad)
+    tokens = lexer.tokenizar(codigo)
+    
+    # Formatear tokens para mostrar
+    tokens_formateados = []
+    for i, token in enumerate(tokens[:30]):  # Mostrar solo los primeros 30 tokens
+        tokens_formateados.append({
+            'tipo': str(token.tipo),
+            'valor': token.valor,
+            'linea': token.linea,
+            'columna': token.columna
+        })
+    tokens_info = {
+        'tokens': tokens_formateados,
+        'total': len(tokens),
+        'mostrados': min(30, len(tokens))
+    }
+    
+    # 2. Análisis sintáctico (generación del AST)
+    parser = Parser(nivel_complejidad)
+    ast = parser.parsear(tokens)
+    
+    # Formatear AST para mostrar (capturando la salida de imprimir_ast)
+    import io
+    import sys
+    ast_generator = ASTGenerator(nivel_complejidad)
+    
+    # Capturar la salida de la función imprimir_ast
+    stdout_original = sys.stdout
+    string_io = io.StringIO()
+    sys.stdout = string_io
+    
+    ast_generator.imprimir_ast(ast)
+    
+    # Restaurar stdout y obtener el texto capturado
+    sys.stdout = stdout_original
+    ast_texto = string_io.getvalue()
+    
+    # 3. Validación del documento
+    validator = Validator(nivel_complejidad)
+    try:
+        validator.validar(ast)
+        validacion_exitosa = True
+        validacion_mensaje = "El documento es válido."
+    except Exception as e:
+        validacion_exitosa = False
+        validacion_mensaje = str(e)
+    
+    # 4. Generación de código HTML
+    generator = HTMLGenerator(nivel_complejidad)
+    html = generator.generar(ast)
+    
+    # Devolver todos los detalles
+    return {
+        'tokens': tokens_info,
+        'ast': ast_texto,
+        'validacion': {
+            'exitosa': validacion_exitosa,
+            'mensaje': validacion_mensaje
+        },
+        'html': html
+    }
 
 
 @app.route('/ayuda')
@@ -62,6 +155,12 @@ def ayuda():
     return render_template('result.html', 
                           titulo='Ayuda de SimpleDoc',
                           contenido=obtener_documentacion_html())
+
+
+@app.route('/demo')
+def demo():
+    """Página de demostración que muestra el proceso completo de compilación"""
+    return render_template('demo.html')
 
 
 def obtener_documentacion_html():
