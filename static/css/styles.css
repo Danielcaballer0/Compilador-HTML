@@ -1,0 +1,73 @@
+/* Estilos personalizados para SimpleDoc */
+
+/* Estilos para el editor */
+#editor, #resultado {
+    width: 100%;
+    min-height: 400px;
+    font-family: 'Courier New', monospace;
+    line-height: 1.5;
+    border: none;
+    resize: vertical;
+}
+
+/* Contenedor de vista previa */
+#preview-container {
+    min-height: 400px;
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: var(--bs-body-bg);
+}
+
+/* Estilos para la vista previa */
+#preview {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#preview h1, #preview h2, #preview h3 {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+#preview p {
+    margin-bottom: 1em;
+}
+
+#preview pre {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 1em;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+#preview img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Estilos para documentación */
+#contenido {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#contenido h1, #contenido h2, #contenido h3 {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+#contenido pre {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 1em;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+#contenido ul, #contenido ol {
+    margin-bottom: 1em;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    #editor, #resultado, #preview-container {
+        min-height: 300px;
+    }
+}

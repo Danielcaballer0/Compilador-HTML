@@ -1,0 +1,36 @@
+# Documento SimpleDoc Avanzado
+
+Este documento muestra todas las funcionalidades disponibles en SimpleDoc.
+
+## Introducción
+
+SimpleDoc es un lenguaje de marcado que soporta diversas características como **negrita**, *cursiva*, enlaces e imágenes.
+
+## Enlaces
+
+Puedes crear [enlaces a sitios web](https://www.ejemplo.com) fácilmente.
+
+## Imágenes
+
+También puedes insertar imágenes:
+
+![Logo de ejemplo](https://via.placeholder.com/150)
+
+## Listas
+
+### Lista no ordenada
+
+- Elemento uno
+- Elemento dos con **formato**
+- Elemento tres
+
+### Lista ordenada
+
+1. Primer paso importante
+2. Segundo paso *con énfasis*
+3. Tercer paso final
+
+## Bloques de código
+
+También puedes incluir bloques de código:
+

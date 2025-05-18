@@ -1,0 +1,25 @@
+# Documento SimpleDoc Intermedio
+
+Este documento muestra las funcionalidades de nivel intermedio de SimpleDoc.
+
+## Introducción
+
+SimpleDoc permite dar **formato especial** al texto, como *cursiva* y **negrita**.
+
+## Listas
+
+### Lista no ordenada
+
+- Primer elemento
+- Segundo elemento
+- Tercer elemento
+
+### Lista ordenada
+
+1. Primer paso
+2. Segundo paso
+3. Tercer paso
+
+## Conclusión
+
+El nivel intermedio de SimpleDoc ofrece herramientas suficientes para crear documentos bien estructurados con formato básico.
