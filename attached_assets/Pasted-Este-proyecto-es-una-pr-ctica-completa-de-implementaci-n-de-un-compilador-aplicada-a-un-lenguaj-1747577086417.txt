@@ -1,0 +1,143 @@
+Este proyecto es una práctica completa de **implementación de un compilador**, aplicada a un lenguaje propio o una versión simplificada de HTML/XML. A continuación te explico paso a paso qué significa cada parte, qué debes hacer y cómo puedes resolverlo.
+
+---
+
+## 🧠 ¿Qué es lo que se te pide?
+
+Crear un **compilador** que haga lo siguiente:
+
+1. **Reciba como entrada** un código fuente en un lenguaje definido por ti (puede ser un mini-HTML, XML, o uno inventado por ti).
+2. **Analice la estructura y la sintaxis** de ese código (validar que esté bien escrito).
+3. **Genere un AST (Árbol de Sintaxis Abstracta)** del código de entrada.
+4. **Transforme ese AST** en otro formato, como:
+
+   * HTML (si inventaste tu propio lenguaje),
+   * tu propio lenguaje (si tomaste HTML/XML como entrada),
+   * un **formato intermedio** (tipo tokens o pseudocódigo),
+   * o incluso un **formato de salida como PDF o JSON**.
+5. **Implemente un validador de sintaxis** (parser).
+6. **Genere código intermedio** que luego serviría como entrada para otras fases del compilador (como optimización o generación de código final).
+
+---
+
+## ✅ Requisitos del proyecto
+
+### 1. **Diseño del Lenguaje**
+
+* Define tu lenguaje: puede ser uno nuevo (ej. “MyMarkup”) o una versión limitada de HTML/XML.
+* Ejemplo de tu lenguaje propio:
+
+```txt
+[Titulo] Mi Página Web [/Titulo]
+[Parrafo] Bienvenido a mi página [/Parrafo]
+```
+
+### 2. **Análisis léxico (tokenización)**
+
+* Crear un lexer que divida el código en **tokens**:
+
+  * Ej: `[Titulo]` → Token: `ETIQUETA_APERTURA_TITULO`
+  * `"Mi Página Web"` → Token: `CONTENIDO`
+
+### 3. **Análisis sintáctico (parser)**
+
+* Validar que las etiquetas abren y cierran correctamente.
+* Crear un **Árbol de Sintaxis Abstracta (AST)**.
+
+### 4. **Análisis semántico (opcional si el lenguaje lo requiere)**
+
+* Verificar reglas semánticas (por ejemplo, que no haya una etiqueta `[Imagen]` sin `src`).
+
+### 5. **Generador de código intermedio**
+
+* Transforma el AST en una representación intermedia.
+* Ejemplo:
+
+```json
+{
+  "tag": "Titulo",
+  "value": "Mi Página Web"
+}
+```
+
+### 6. **Generador de código final (HTML u otro formato)**
+
+* Convertir el código intermedio en HTML, PDF o JSON.
+
+---
+
+## 🛠️ ¿Cómo resolverlo? (Pasos sugeridos)
+
+### 1. Escoge el lenguaje de entrada
+
+* Puede ser:
+
+  * Un subconjunto de HTML
+  * Un nuevo lenguaje inventado (tipo mini-markup)
+  * Algo visual como etiquetas `[Caja]` `[Texto]`
+
+### 2. Elige el lenguaje de programación
+
+* Python (usando librerías como `ply`, `lark`, `regex`, etc.)
+* JavaScript (si haces interfaz web)
+* Java (más formal)
+
+### 3. Escribe el analizador léxico
+
+* Usa expresiones regulares para identificar tokens
+* Ejemplo en Python:
+
+```python
+import re
+tokens = re.findall(r"\[.*?\]|\w+", "[Titulo] Mi Página Web [/Titulo]")
+```
+
+### 4. Escribe el analizador sintáctico (parser)
+
+* Convierte los tokens en un árbol (estructura jerárquica).
+* Puedes usar `lark` en Python para esto fácilmente.
+
+### 5. Genera el AST
+
+* Ejemplo de árbol:
+
+```python
+{
+  "type": "Pagina",
+  "children": [
+    {"type": "Titulo", "value": "Mi Página Web"},
+    {"type": "Parrafo", "value": "Bienvenido"}
+  ]
+}
+```
+
+### 6. Genera el formato de salida
+
+* Por ejemplo, HTML:
+
+```html
+<h1>Mi Página Web</h1>
+<p>Bienvenido</p>
+```
+
+---
+
+## 🎯 Ejemplo completo
+
+### Código de entrada (lenguaje inventado):
+
+```txt
+[Titulo] Hola Mundo [/Titulo]
+[Parrafo] Este es un párrafo. [/Parrafo]
+```
+
+### Salida HTML generada:
+
+```html
+<h1>Hola Mundo</h1>
+<p>Este es un párrafo.</p>
+```
+
+---
+
+¿Quieres que te ayude a elegir el lenguaje que vas a inventar o deseas trabajar sobre HTML?

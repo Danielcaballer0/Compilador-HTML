@@ -1,0 +1,29 @@
+# Mi Documento de Ejemplo
+
+Este es un documento de ejemplo para mostrar las capacidades del compilador SimpleDoc.
+
+## Funcionalidades
+
+SimpleDoc soporta diferentes niveles de complejidad:
+
+### Nivel 1: Básico
+- Títulos y texto plano
+
+### Nivel 2: Intermedio
+- **Texto en negrita**
+- *Texto en cursiva*
+- Listas ordenadas y no ordenadas
+
+### Nivel 3: Avanzado
+- [Enlaces a sitios web](https://www.ejemplo.com)
+- Imágenes: ![Ejemplo de imagen](https://ejemplo.com/imagen.jpg)
+- Bloques de código:
+```
+function saludar() {
+  console.log("¡Hola mundo!");
+}
+```
+
+1. Primer elemento de lista numerada
+2. Segundo elemento
+3. Tercer elemento
