@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Proyecto Compiladores - SimpleDoc Compiler
 
 Este proyecto es un compilador para un subconjunto simplificado de un lenguaje llamado **SimpleDoc**. El compilador es capaz de analizar la estructura de un documento, validar la sintaxis, generar un árbol de sintaxis abstracta (AST) y transformar el AST en código HTML.
@@ -82,3 +83,7 @@ Luego abrir en el navegador: `http://localhost:5000`
 ## Licencia
 
 Este proyecto está bajo la licencia MIT. Consulte el archivo LICENSE para más detalles.
+=======
+# Compilador-HTML
+Este proyecto implementa un compilador para un lenguaje personalizado inspirado en HTML/XML. Analiza la estructura del documento, valida la sintaxis y genera un Árbol de Sintaxis Abstracta (AST). A partir del AST, transforma el código fuente a un nuevo formato (como HTML u otro definido).
+>>>>>>> 7960b123b6a746682edb81003aab51c4fda9c864
