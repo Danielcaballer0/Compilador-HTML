@@ -6,16 +6,6 @@ Este documento muestra todas las funcionalidades disponibles en SimpleDoc.
 
 SimpleDoc es un lenguaje de marcado que soporta diversas características como **negrita**, *cursiva*, enlaces e imágenes.
 
-## Enlaces
-
-Puedes crear [enlaces a sitios web](https://www.ejemplo.com) fácilmente.
-
-## Imágenes
-
-También puedes insertar imágenes:
-
-![Logo de ejemplo](https://via.placeholder.com/150)
-
 ## Listas
 
 ### Lista no ordenada

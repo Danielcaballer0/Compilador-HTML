@@ -38,7 +38,7 @@ class Parser:
             nivel_complejidad: Entero del 1 al 3 que determina la complejidad del análisis
                 1 - Básico: Solo títulos y texto plano
                 2 - Intermedio: Básico + formateo (negrita, cursiva) y listas
-                3 - Avanzado: Intermedio + enlaces, imágenes y bloques de código
+                3 - Avanzado: Intermedio + enlaces y bloques de código
         """
         self.tokens = []
         self.posicion = 0

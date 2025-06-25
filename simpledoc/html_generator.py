@@ -20,7 +20,7 @@ class HTMLGenerator:
             nivel_complejidad: Entero del 1 al 3 que determina la complejidad de la generación
                 1 - Básico: Solo títulos y texto plano
                 2 - Intermedio: Básico + formateo (negrita, cursiva) y listas
-                3 - Avanzado: Intermedio + enlaces, imágenes y bloques de código
+                3 - Avanzado: Intermedio + enlaces y bloques de código
         """
         self.nivel_complejidad = min(max(nivel_complejidad, 1), 3)
     

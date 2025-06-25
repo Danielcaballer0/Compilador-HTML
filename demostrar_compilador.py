@@ -1,10 +1,3 @@
-#!/usr/bin/env python3
-"""
-Script de demostración del compilador SimpleDoc
-
-Este script muestra cada etapa del proceso de compilación para un documento SimpleDoc,
-incluyendo el análisis léxico, sintáctico, validación y generación de código.
-"""
 
 import os
 import sys

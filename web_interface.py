@@ -1,8 +1,4 @@
-"""
-Interfaz web para el compilador SimpleDoc
 
-Proporciona una interfaz gráfica para utilizar el compilador de manera interactiva.
-"""
 
 import os
 from flask import Flask, render_template, request, flash, jsonify
