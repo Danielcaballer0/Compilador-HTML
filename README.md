@@ -79,8 +79,3 @@ Luego abrir en el navegador: `http://localhost:5000`
 - `ejemplos/`: Archivos de ejemplo en formato SimpleDoc.
 - `static/` y `templates/`: Archivos estáticos y plantillas para la interfaz web.
 
-## Licencia
-
-Este proyecto está bajo la licencia MIT. Consulte el archivo LICENSE para más detalles.
-=======
-
